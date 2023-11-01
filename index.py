@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 app = Flask(__name__)
 
@@ -17,7 +17,9 @@ def db():
 
 @app.route("/alex", methods=["GET", "POST"])
 def alex():
-    now = str(datetime.now())
+    tz = timezone(timedelta(hours=+8))
+    now = str(datetime.now(tz))
+    #now = str(datetime.now())
     user = request.values.get("nick")
     return render_template("alex.html", datetime=now, name=user)
 
