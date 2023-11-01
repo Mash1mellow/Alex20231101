@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    X = "作者:楊子青 20231025<br>"
+    X = "作者:黃植達 20231101<br>"
     X += "<a href=/db>課程網頁</a><br>"
-    X += "<a href=/tcyang?nick=tcyang>個人介紹及系統時間</a><br>"
+    X += "<a href=/alex?nick=alex>個人介紹及系統時間</a><br>"
     X += "<a href=/account>表單傳值</a><br>"
     return X
 
@@ -15,11 +15,11 @@ def index():
 def db():
     return "<a href='https://drive.google.com/drive/folders/1JGHLQWpzT2QxSVPUwLxrIdYowijWy4h1'>海青班資料庫管理課程</a>"
 
-@app.route("/tcyang", methods=["GET", "POST"])
-def tcyang():
+@app.route("/alex", methods=["GET", "POST"])
+def alex():
     now = str(datetime.now())
     user = request.values.get("nick")
-    return render_template("tcyang.html", datetime=now, name=user)
+    return render_template("alex.html", datetime=now, name=user)
 
 @app.route("/account", methods=["GET", "POST"])
 def account():
