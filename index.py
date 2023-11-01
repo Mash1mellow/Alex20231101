@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
-db = firestore.client()
+
 
 from flask import Flask, render_template, request
 from datetime import datetime, timezone, timedelta
@@ -42,7 +42,8 @@ def account():
 
 @app.route("/read")
 def read():
-    Result = ""     
+    Result = ""
+    db = firestore.client()
     collection_ref = db.collection("黃植達")    
     docs = collection_ref.order_by("mail", direction=firestore.Query.DESCENDING).get()    
     for doc in docs:         
