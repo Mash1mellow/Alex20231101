@@ -17,6 +17,7 @@ def index():
     X += "<a href=/account>表單傳值</a><br>"
     X += "<br><a href=/read>讀取Firestore資料</a><br>"
     X += "<br><a href=/read2>人選之人─造浪者</a><br>"
+    X += "<br><a href=/search>Search</a><br>"
     return X
 
 @app.route("/db")
@@ -41,6 +42,24 @@ def account():
     else:
         return render_template("account.html")
 
+@app.route("/search")
+def search():
+    if request.method == "POST":
+        keyword = request.form["user"]
+        Result = "Input name : " + keyword
+
+        Result += "<br>"
+        db = firestore.client()
+        collection_ref = db.collection("人選之人─造浪者")    
+        docs = collection_ref.order_by("birth").get()
+        for doc in docs:         
+            x = doc.to_dict()
+            if keyword in x["name"]:
+                Result += "Name : " + x["name"] + ", Role : " + x["role"] + ", Birth : " + str(x["birth"]) + "<br>"
+        return Result
+    else:
+        return render_template("search.html")
+    
 @app.route("/read")
 def read():
     Result = ""
