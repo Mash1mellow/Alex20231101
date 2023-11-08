@@ -56,9 +56,10 @@ def read2():
     Result = ""
     db = firestore.client()
     collection_ref = db.collection("人選之人─造浪者")    
-    docs = collection_ref.get()
+    docs = collection_ref.order_by("birth").get()
     for doc in docs:         
-        Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
+        x = doc.to.dict()
+        Result += "Name : " + x["name"] + ",Role : " + x["role"] + ",Birth : " + str(x["birth"]) + "<br>"    
     return Result
 
 
