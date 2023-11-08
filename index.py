@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    X = "作者:黃植達 20231108c<br>"
+    X = "作者:黃植達 20231108d<br>"
     X += "<a href=/db>課程網頁</a><br>"
     X += "<a href=/alex?nick=alex>個人介紹及系統時間</a><br>"
     X += "<a href=/account>表單傳值</a><br>"
@@ -42,7 +42,7 @@ def account():
     else:
         return render_template("account.html")
 
-@app.route("/search")
+@app.route("/search", methods=["GET", "POST"])
 def search():
     if request.method == "POST":
         keyword = request.form["user"]
