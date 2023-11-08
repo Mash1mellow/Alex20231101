@@ -59,7 +59,7 @@ def read2():
     docs = collection_ref.order_by("birth").get()
     for doc in docs:         
         x = doc.to.dict()
-        Result += "Name : " + x["name"] + ",Role : " + x["role"] + ",Birth : " + str(x["birth"]) + "<br>"    
+        Result += "Name : " + x["name"] + ", Role : " + x["role"] + ", Birth : " + str(x["birth"]) + "<br>"    
     return Result
 
 
