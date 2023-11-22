@@ -90,10 +90,10 @@ def read3():
     docs = collection_ref.get()
     for doc in docs:
         book = doc.to_dict()
-        Result += "<a href = " + book["url"] + ">" + book["title"] + "</a>" +"<br>"
+        Result += "Title : <a href = " + book["url"] + ">" + book["title"] + "</a><br>"
         Result += "Author : " + book["author"] + "<br>"
-        Result += "<img src = " + book["cover"] + ">" + "</img>" + "<br>"
-        Result += "Anniversary : " + book["anniversary"] + "<br>"     
+        Result += "Anniversary : " + str.book["anniversary"] + "<br>"
+        Result += "<img src = " + book["cover"] + ">" + "</img><br>"
     return Result
 
 #if __name__ == "__main__":
