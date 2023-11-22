@@ -87,12 +87,12 @@ def read3():
     Result = ""
     db = firestore.client()
     collection_ref = db.collection("圖書精選")    
-    docs = collection_ref.get()
+    docs = collection_ref.order_by("anniversary").get()
     for doc in docs:
         book = doc.to_dict()
         Result += "Title : <a href = " + book["url"] + ">" + book["title"] + "</a><br>"
         Result += "Author : " + book["author"] + "<br>"
-        Result += "Anniversary : " + str.book["anniversary"] + "<br>"
+        Result += "Anniversary : " + str(book["anniversary"]) + "<br>"
         Result += "<img src = " + book["cover"] + ">" + "</img><br>"
     return Result
 
