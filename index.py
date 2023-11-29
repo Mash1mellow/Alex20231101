@@ -1,10 +1,10 @@
 import firebase_admin
 import requests
 
+from firebase_admin import credentials, firestore
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
-from firebase_admin import credentials, firestore
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 from datetime import datetime, timezone, timedelta
@@ -130,5 +130,6 @@ def movie():
         doc_ref.set(doc)
     return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate
 
+
 if __name__ == "__main__":
-    app.run(Debug=True)
+    app.run(debug=True)
